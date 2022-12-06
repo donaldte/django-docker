@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  web: # service name
+  #build the image for the web service from the dockerfile in parent directory.  
+    build: .
+        
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+ 
+  redis: #  service name
+    image: "redis:alpine"
+             
+ 
