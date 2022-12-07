@@ -1,4 +1,4 @@
-#Docker et Docker compose
+# Docker et Docker compose
 
 Docker est un outil que les développeurs utilisent pour simplifier le développement et la livraison d'applications.
 
@@ -10,7 +10,7 @@ Cette partie vous expliquera les bases de Docker, en vous concentrant spécifiqu
     2. À quoi ressemble un Dockerfile et à quoi servent ses instructions les plus courantes
     3. Que sont les images et les conteneurs, comment sont-ils créés et comment les gérer
 
-#Objectifs
+# Objectifs
 
 À la fin de cette partie, vous devriez être en mesure de :
 
@@ -43,10 +43,10 @@ Donc, si vous avez une application qui doit s'exécuter sur différents système
 Tous ces avantages sont dus au fait que les conteneurs Docker n'ont pas besoin de leur propre système d'exploitation.
 
 
-#Docker
+# Docker
 
 
-##Moteur Docker
+## Moteur Docker
 
 Lorsque les gens font référence à Docker, ils font généralement référence à Docker Engine(Moteur Docker).
 
@@ -65,7 +65,7 @@ Docker Engine est la technologie de conteneurisation open source sous-jacente po
     3. Le client Docker (appelé docker) est l'interface de ligne de commande utilisée pour interagir avec le démon Docker. Ainsi, lorsque vous utilisez une commande comme <<docker build>>, vous utilisez le client Docker, qui à son tour exploite l'API Docker Engine pour communiquer avec le démon Docker.
 
 
-##Desktop Docker
+## Desktop Docker
 
 Ces jours-ci, lorsque vous essayez d'installer Docker, vous rencontrerez Docker Desktop. Bien que Docker Engine soit inclus avec Docker Desktop, il est important de comprendre que Docker Desktop n'est pas identique à Docker Engine. Docker Desktop est un environnement de développement intégré pour les conteneurs Docker. Il est beaucoup plus facile de configurer votre système d'exploitation pour travailler avec Docker.
 
@@ -75,7 +75,7 @@ Si vous ne l'avez pas déjà fait, installez Docker Desktop :
     • MacOS 
     • Windows 
 
-##Concepts Docker
+## Concepts Docker
 
 Au cœur de Docker, il y a trois concepts de base :
 
@@ -92,7 +92,7 @@ Au cœur de Docker, il y a trois concepts de base :
 Un Dockerfile est utilisé pour créer une image Docker, qui est ensuite utilisée pour créer (plusieurs) conteneurs Docker.
 
 
-#Dockerfile
+# Dockerfile
 
 Encore une fois, un Dockerfile est un fichier texte qui contient des instructions pour Docker sur la façon de créer une image. Par défaut, un Dockerfile n'a pas d'extension, mais vous pouvez en ajouter une si vous en avez besoin de plusieurs - par exemple, Dockerfile.prod.
 
@@ -104,7 +104,7 @@ Voici un exemple de Dockerfile très simple :
 Un Dockerfile est essentiellement une liste de commandes sous la forme suivante : arguments INSTRUCTION. La majorité des commandes les plus utilisées peuvent être vues dans le Dockerfile ci-dessus. Voyons chacun d'eux en détail.
 
 
-##FROM
+### FROM
 
 Tous les Dockerfiles incluent une image parent/base sur laquelle la nouvelle image sera construite. Vous utilisez l'instruction FROM pour définir l'image parent :
 
@@ -133,7 +133,7 @@ Remarques sur python:3.10-slim-buster :
     Des noms comme buster, bullseye ou alpine vous indiquent quelles images de système d'exploitation ont été utilisées pour cette image (buster et bullseye font référence aux versions de Debian tandis qu'alpine est une distribution Linux légère). De plus, il existe des balises telles que slim et slim-buster qui utilisent des versions plus légères de l'image complète.
 
 
-###RUN
+### RUN
 
 L'instruction RUN exécute toutes les commandes dans un nouveau calque au-dessus de l'image actuelle et valide le résultat.
 
@@ -194,7 +194,7 @@ python manage.py migrate
 python manage.py collectstatic –noinput
 
 
-##ADD et COPY
+## ADD et COPY
 
 Une autre paire similaire est ADD et COPY.
 
@@ -221,7 +221,7 @@ ADD --keep-git-dir=true https://github.com/moby/buildkit.git#v0.10.1 /buildkit
 ADD source.fichier.tar.gz /destination/chemin
 
 
-##IMAGE
+## IMAGE
 
 Une image pourrait être le concept le plus déroutant des trois. Vous créez un Dockerfile, puis utilisez un conteneur, mais une image se situe entre ces deux.
 
@@ -234,7 +234,7 @@ Les tâches liées à l'image les plus importantes sont :
     3. suppression d'images
 
 
-##Contruction
+## Contruction
 
 Pour créer une image à partir d'un Dockerfile, vous utilisez la commande docker image build. Cette commande nécessite un argument : soit un chemin, soit une URL du contexte.
 
@@ -290,7 +290,7 @@ Il existe deux cas d'utilisation pour supprimer des images :
 
 Pour le premier cas, vous utilisez `docker image rmi` pour le second, vous utilisez `docker image prune`.
 
-##Retirer
+## Retirer
 
 docker image rm supprime et décode la ou les images sélectionnées. Il nécessite un argument : la référence à l'image ou aux images que vous souhaitez supprimer. Vous pouvez le référencer par son nom ou son ID court/long.
 
@@ -322,7 +322,7 @@ test1        latest    4659ba97837b   4 minutes ago   245MB
 test         latest    4659ba97837b   4 minutes ago   245MB
 
 
-##Prune
+## Prune
 
 docker image prune supprime les images pendantes. Étant donné que prune est une commande qui peut être utilisée pour nettoyer les conteneurs, les images, les volumes et les réseaux, cette commande n'a pas de version plus courte. Si vous utilisez l'indicateur -a, toutes les images inutilisées sont supprimées (c'est-à-dire, docker image prune -a).
 
@@ -343,7 +343,7 @@ deleted: sha256:284f940f39c3ef5be09440e23fdefdb00df0791344db5c340a9d11979a98039e
 deleted: sha256:1934187bf17ccf4e754842a4ceeacf5c14aaa63ba7a04c0c520f53946426c902
 
 
-##Conteneur
+## Conteneur
 
 Le troisième concept que vous devez comprendre est un conteneur, qui est un environnement contrôlé pour votre application. Une image devient un conteneur lorsqu'elle est exécutée sur Docker Engine. C'est l'objectif final : vous utilisez Docker pour disposer d'un conteneur pour votre application.
 
@@ -355,7 +355,7 @@ Les principales opérations que vous pouvez effectuer avec un conteneur sont:
     4. enlever un conteneur
 
 
-##Fonctionnement
+## Fonctionnement
 
 Vous pouvez soit créer un nouveau conteneur d'une image et l'exécuter, soit démarrer un conteneur existant qui a été précédemment arrêté.
 
@@ -369,9 +369,9 @@ Ainsi, ce qui suit vous donne essentiellement le même résultat :
 
 # meme que:
 
-``$ docker container create mom_image```
+``$ docker container create mom_image
 88ce9c60aeabbb970012b5f8dbae6f34581fa61ec20bd6d87c6831fbb5999263
-```$ docker container start 88ce9c60aeabbb970012b5f8dbae6f34581fa61ec20bd6d87c6831fbb5999263```
+```$ docker container start 88ce9c60aeabbb970012b5f8dbae6f34581fa61ec20bd6d87c6831fbb5999263
 
 
 Vous devez fournir un argument : l'image que vous souhaitez utiliser pour le conteneur.
@@ -401,7 +401,7 @@ Votre conteneur reçoit un nom unique et original par défaut, mais vous pouvez 
 ```docker container run -p 8000:8000 --name mon_container mon_image```
 
 
-##Start
+### Start
 
 Pour démarrer un conteneur arrêté ou juste créé, vous utilisez la commande `docker container start`. Étant donné qu'avec cette commande, vous démarrez un conteneur existant, vous devez spécifier le conteneur au lieu d'une image (comme avec docker container run).
 
@@ -444,7 +444,7 @@ Jetons un coup d'œil à la sortie pour :
 
 Certaines informations sont tronquées. Si vous voulez la version non tronquée, ajoutez –no-trunc.
 
-Stop
+### Stop
 
 Pour arrêter un conteneur, utilisez `docker container stop`. Le nom ou l'ID du conteneur arrêté est ensuite renvoyé.
 
@@ -461,7 +461,7 @@ a50de088fdfd   fnndsc/pman:latest   "gunicorn --bind 0.0…"   About a minute ag
 mon_container```
 
 
-##Suppression
+### Suppression
 
 Comme pour les images, pour supprimer un conteneur, vous pouvez :
 
@@ -489,7 +489,7 @@ Deleted Containers:
 
 
 
-#Conclusion
+# Conclusion
 
 Pour résumer, les concepts les plus essentiels dans Docker sont Dockerfile, image et conteneur.
 
@@ -514,7 +514,7 @@ Le but de cette partie était de vous expliquer les bases de Docker.
 
 
 
-#PARTIE II Essayez Docker Compose
+# PARTIE II Essayez Docker Compose
 
 Cette partie est conçu pour présenter les concepts clés de Docker Compose tout en créant une application Web Python simple. L'application utilise le framework django et maintient un compteur d'accès dans Redis.
 
@@ -522,7 +522,7 @@ Les concepts présentés ici devraient être compréhensibles même si vous n'ê
 
 
 
-##Conditions préalables
+## Conditions préalables
 
 Vous devez avoir Docker Engine et Docker Compose sur votre machine. Vous pouvez soit:
 
@@ -532,7 +532,7 @@ Vous devez avoir Docker Engine et Docker Compose sur votre machine. Vous pouvez 
 Vous n'avez pas besoin d'installer Python ou Redis, car les deux sont fournis par les images Docker.
 
 
-##Étape 1 : Définir les dépendances de l'application
+## Étape 1 : Définir les dépendances de l'application
 
     1. Créez un répertoire pour le projet :
            mkdir composetest
@@ -664,7 +664,7 @@ Explorons le Dockerfile et ce que fait chacune des commandes.
 Vérifiez que le Dockerfile n'a pas d'extension de fichier comme .txt. Certains éditeurs peuvent ajouter automatiquement cette extension de fichier, ce qui entraîne une erreur lorsque vous exécutez l'application.
 
 
-##Étape 3 : Définir les services dans un fichier Compose🔗
+## Étape 3 : Définir les services dans un fichier Compose🔗
 
 Exécuter plusieurs conteneurs avec Docker Compose
 
@@ -708,7 +708,7 @@ Le service Web utilise une image créée à partir du Dockerfile dans le répert
 Le service Redis utilise une image Redis publique extraite du registre Docker Hub.
 
 
-Étape 4 : Créez et exécutez votre application avec Compose
+##Étape 4 : Créez et exécutez votre application avec Compose
 
     Depuis votre répertoire de projet, démarrez votre application en exécutant 
 
@@ -782,7 +782,7 @@ Vous pouvez inspecter les images avec docker inspect <tag or id>.
 
 
 
-##5-Arrêtez l'application, soit en exécutant `docker compose down` dans le répertoire de votre projet dans le deuxième terminal, soit en appuyant sur CTRL + C dans le terminal d'origine où vous avez démarré l'application.
+## 5-Arrêtez l'application, soit en exécutant `docker compose down` dans le répertoire de votre projet dans le deuxième terminal, soit en appuyant sur CTRL + C dans le terminal d'origine où vous avez démarré l'application.
 
 
 
@@ -806,7 +806,7 @@ services:
 La nouvelle clé de volumes monte le répertoire du projet (répertoire actuel) sur l'hôte vers /code à l'intérieur du conteneur, vous permettant de modifier le code à la volée, sans avoir à reconstruire l'image.
 
 
-Étape 6 : Recréez et exécutez l'application avec Compose
+## Étape 6 : Recréez et exécutez l'application avec Compose
 
 Dans votre répertoire de projet, tapez `docker compose up` pour créer l'application avec le fichier Compose mis à jour et exécutez-le.
 
@@ -874,7 +874,7 @@ compose-web-1    | [06/Dec/2022 23:26:44] "GET / HTTP/1.1" 200 38
 ```
 
 
-##Étape 7 : Mettre à jour l'application
+## Étape 7 : Mettre à jour l'application
 
 Étant donné que le code de l'application est maintenant monté dans le conteneur à l'aide d'un volume, vous pouvez apporter des modifications à son code et voir les modifications instantanément, sans avoir à reconstruire l'image.
 
