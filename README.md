@@ -15,7 +15,7 @@ Cette partie vous expliquera les bases de Docker, en vous concentrant spécifiqu
 À la fin de cette partie, vous devriez être en mesure de :
 
     1. Expliquer ce qu'est Docker et son fonctionnement
-    2. Décrire et différencier les concepts et composants suivants : Docker Engine, Docker Desktop, Dockerfile, Image Docker et conteneur Docker 
+    2. Décrire et différencier les concepts et composants suivants : `Docker Engine`, `Docker Desktop`,`Dockerfile`, `Image Docker` et `conteneur Docker` 
     3. Suivrer des tutoriels plus compliqués qui utilisent Docker
 
 Conteneurs et machines virtuelles
